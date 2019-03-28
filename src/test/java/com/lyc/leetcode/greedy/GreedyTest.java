@@ -1,5 +1,6 @@
 package com.lyc.leetcode.greedy;
 
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,5 +67,44 @@ public class GreedyTest {
 		Assert.assertEquals(true, Greedy.canPlaceFlowers(p3, 1));
 		Assert.assertEquals(true, Greedy.canPlaceFlowers(p4, 3));
 
+	}
+
+	@Test
+	public void testCheckPossibility() {
+		int[] nums1 = {1, 2, 3, 4};
+		int[] nums2 = {4, 3, 2, 1};
+		int[] nums3 = {1, 3, 2};
+		int[] nums4 = {4, 5, 6, 4};
+
+		Assert.assertEquals(true, Greedy.checkPossibility(nums1));
+		Assert.assertEquals(false, Greedy.checkPossibility(nums2));
+		Assert.assertEquals(true, Greedy.checkPossibility(nums3));
+		Assert.assertEquals(true, Greedy.checkPossibility(nums4));
+	}
+
+
+	@Test
+	public void testIsSubsequence() {
+		String s1 = "abc";
+		String t1 = "savbnc";
+
+		String s2 = "cf";
+		String t2 = "cfgh";
+
+		String s3 = "cc";
+		String t3 = "vdsccc";
+
+		String s4 = "sfb";
+		String t4 = "sfffxxz";
+
+		Assert.assertEquals(true, Greedy.isSubsequence(s1, t1));
+		Assert.assertEquals(true, Greedy.isSubsequence(s2, t2));
+		Assert.assertEquals(true, Greedy.isSubsequence(s3, t3));
+		Assert.assertEquals(false, Greedy.isSubsequence(s4, t4));
+	}
+
+	@Test
+	public void testPartitionLabels() {
+		System.out.println(Greedy.partitionLabels("ababcbacadefegdehijhklij"));
 	}
 }
