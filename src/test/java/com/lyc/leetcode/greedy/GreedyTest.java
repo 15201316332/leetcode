@@ -107,4 +107,13 @@ public class GreedyTest {
 	public void testPartitionLabels() {
 		System.out.println(Greedy.partitionLabels("ababcbacadefegdehijhklij"));
 	}
+
+	@Test
+	public void testReconstructQueue() {
+		int[][] people = {{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}};
+		int[][] sort = Greedy.reconstructQueue(people);
+		for (int[] s : sort) {
+			System.out.println(Arrays.toString(s));
+		}
+	}
 }

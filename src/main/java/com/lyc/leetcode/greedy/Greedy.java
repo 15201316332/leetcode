@@ -155,10 +155,10 @@ public class Greedy {
 	/**
 	 * @author liaoyichen
 	 * @date 2019/3/28
-	 * @description 根据身高和序号重建队列
+	 * @description 根据身高和序号重建队列 本身
 	 */
 	public static int[][] reconstructQueue(int[][] people) {
-		if (null == people || people.length == 0 || people[0].length == 0) {
+		if (null == people || people.length == 0 || people[0].length < 1) {
 			return new int[0][0];
 		}
 		Arrays.sort(people, (a, b) -> {
@@ -173,12 +173,7 @@ public class Greedy {
 		for (int i = 0; i < length; i++) {
 			tmp.add(people[i][1], new int[]{people[i][0], people[i][1]});
 		}
-		int[][] result = new int[length][2];
-		for (int i = 0; i < length; i++) {
-			result[i][0] = tmp.get(i)[0];
-			result[i][1] = tmp.get(i)[01];
-		}
-		return result;
+		return tmp.toArray(new int[length][2]);
 	}
 
 }
