@@ -27,4 +27,45 @@ public class DoublePointerTest {
 		Assert.assertEquals(true, Arrays.equals(out1, DoublePointer.getSumIndex2(input1, sum1)));
 		Assert.assertEquals(true, Arrays.equals(out2, DoublePointer.getSumIndex2(input2, sum2)));
 	}
+
+	@Test
+	public void testReverseVowels() {
+		String in1 = "";
+		String out1 = "";
+		String in2 = "axcde";
+		String out2 = "excda";
+		String in3 = "dfggi";
+		String out3 = "dfggi";
+		Assert.assertEquals(out1, DoublePointer.reverseVowels(in1));
+		Assert.assertEquals(out2, DoublePointer.reverseVowels(in2));
+		Assert.assertEquals(out3, DoublePointer.reverseVowels(in3));
+	}
+
+	@Test
+	public void testJudgeSquareSum() {
+		int in1 = -1;
+		int in2 = 0;
+		int in3 = 1;
+		int in4 = 7;
+		int in5 = 9;
+		int in6 = 10;
+		Assert.assertEquals(false, DoublePointer.judgeSquareSum(in1));
+		Assert.assertEquals(true, DoublePointer.judgeSquareSum(in2));
+		Assert.assertEquals(true, DoublePointer.judgeSquareSum(in3));
+		Assert.assertEquals(false, DoublePointer.judgeSquareSum(in4));
+		Assert.assertEquals(true, DoublePointer.judgeSquareSum(in5));
+		Assert.assertEquals(true, DoublePointer.judgeSquareSum(in6));
+	}
+
+	@Test
+	public void testIsValidPalindrome() {
+		String s1 = "a";
+		String s2 = "abc";
+		String s3 = "aba";
+		String s4 = "aavcaa";
+		Assert.assertEquals(true, DoublePointer.isValidPalindrome(s1));
+		Assert.assertEquals(false, DoublePointer.isValidPalindrome(s2));
+		Assert.assertEquals(true, DoublePointer.isValidPalindrome(s3));
+		Assert.assertEquals(true, DoublePointer.isValidPalindrome(s4));
+	}
 }
