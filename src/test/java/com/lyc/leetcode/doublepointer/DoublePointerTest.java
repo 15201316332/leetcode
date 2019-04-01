@@ -68,4 +68,13 @@ public class DoublePointerTest {
 		Assert.assertEquals(true, DoublePointer.isValidPalindrome(s3));
 		Assert.assertEquals(true, DoublePointer.isValidPalindrome(s4));
 	}
+	@Test
+	public void testMerge(){
+		int[] n1={1,2,3,0,0,0};
+		int m=3;
+		int[] n2={2,5,6};
+		int n=3;
+		DoublePointer.merge(n1,m,n2,n);
+		System.out.println(Arrays.toString(n1));
+	}
 }
