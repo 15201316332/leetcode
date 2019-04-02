@@ -29,7 +29,7 @@ public class BinaryTest {
 
 	@Test
 	public void testArrangeCoins1() {
-		Assert.assertEquals(65535, Binary.arrangeCoins1(Integer.MAX_VALUE));
+		Assert.assertEquals(3, Binary.arrangeCoins1(5));
 	}
 
 	@Test

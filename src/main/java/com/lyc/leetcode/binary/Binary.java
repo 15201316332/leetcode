@@ -13,13 +13,12 @@ public class Binary {
 	 * @description 二分查找，排序数组中找到指定值的位置，找不到返回-1 要点：中间位置 l+(r-l)/2 找不到-1
 	 */
 	public static int binarySearch(int[] array, int key) {
-		int l = 0, r = array.length - 1, i = 0;
+		int l = 0, r = array.length - 1;
 		while (l <= r) {
 			int mid = l + (r - l) / 2;
 			if (array[mid] == key) {
 				return mid;
-			}
-			if (array[mid] > key) {
+			} else if (array[mid] > key) {
 				r = mid - 1;
 			} else {
 				l = mid + 1;
