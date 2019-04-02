@@ -50,4 +50,35 @@ public class ReviewTest {
 		Assert.assertEquals(4, Review0402.singleNonDuplicate(array3));
 		Assert.assertEquals(1, Review0402.singleNonDuplicate(array4));
 	}
+
+	@Test
+	public void testFindContentChildren() {
+		int[] g1 = {1, 2};
+		int[] c1 = {1, 2, 3};
+
+		int[] g2 = {4, 5, 6};
+		int[] c2 = {1, 2, 3, 4};
+
+		int[] g3 = {1, 2, 3, 4};
+		int[] c3 = {4, 5, 6, 7};
+
+		int[] g4 = {1, 4, 3, 2};
+		int[] c4 = {4, 7, 6, 5};
+
+		Assert.assertEquals(2, Review0402.findContentChildren(g1, c1));
+		Assert.assertEquals(1, Review0402.findContentChildren(g2, c2));
+		Assert.assertEquals(4, Review0402.findContentChildren(g3, c3));
+		Assert.assertEquals(4, Review0402.findContentChildren(g4, c4));
+	}
+
+	@Test
+	public void testFindMinArrowShots() {
+		int[][] ps1 = {{1, 2}};
+		int[][] ps2 = {{1, 2}, {1, 3}, {2, 3}};
+		int[][] ps3 = {{1, 2}, {3, 4}, {7, 8}};
+
+		Assert.assertEquals(1, Review0402.findMinArrowShots(ps1));
+		Assert.assertEquals(1, Review0402.findMinArrowShots(ps2));
+		Assert.assertEquals(3, Review0402.findMinArrowShots(ps3));
+	}
 }

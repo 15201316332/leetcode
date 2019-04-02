@@ -1,5 +1,7 @@
 package com.lyc.leetcode.review;
 
+import java.util.Arrays;
+
 /**
  * @author liaoyichen
  * @date 2019/4/2
@@ -83,20 +85,62 @@ public class Review0402 {
 	 * @date 2019/4/2
 	 * @description 找出唯一不是一对的数据
 	 */
-	public static int singleNonDuplicate(int[] array){
-		int i=0,j=array.length-1;
-		while(i<j){
-			int mid=i+(j-i)/2;
-			if(mid%2==1){
+	public static int singleNonDuplicate(int[] array) {
+		int i = 0, j = array.length - 1;
+		while (i < j) {
+			int mid = i + (j - i) / 2;
+			if (mid % 2 == 1) {
 				mid++;
 			}
-			if(array[mid]==array[mid-1]){
-				j=mid-2;
-			}else{
-				i=mid;
+			if (array[mid] == array[mid - 1]) {
+				j = mid - 2;
+			} else {
+				i = mid;
 			}
 		}
 		return array[j];
 	}
 
+	public static int findContentChildren(int[] g, int[] c) {
+		Arrays.sort(g);
+		Arrays.sort(c);
+		int i = 0, j = 0;
+		while (i < g.length && j < c.length) {
+			if (c[j] >= g[i]) {
+				j++;
+				i++;
+			} else {
+				j++;
+			}
+		}
+		return i;
+	}
+
+	public static int findMinArrowShots(int[][] points) {
+		if (points.length == 0) {
+			return 0;
+		}
+		Arrays.sort(points, (a, b) -> (a[1] - b[1]));
+		int result = 1;
+		int p = points[0][1];
+		for (int i = 1; i < points.length; i++) {
+			if (p >= points[i][0]) {
+				continue;
+			}
+			result++;
+			p = points[i][1];
+		}
+		return result;
+
+	}
+
+	public static int maxProfit(int[] prices){
+		int sum=0;
+		for(int i=1;i<prices.length;i++){
+			 if(prices[i]>prices[i-1]){
+				 sum+=prices[i]-prices[i-1];
+			 }
+		}
+		return sum;
+	}
 }
