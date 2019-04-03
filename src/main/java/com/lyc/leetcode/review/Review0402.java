@@ -143,4 +143,45 @@ public class Review0402 {
 		}
 		return sum;
 	}
+
+	public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int count=0;
+        for(int i=0;i<flowerbed.length;i++){
+        	if(flowerbed[i]==1){
+        		continue;
+			}
+			int pre=i==0?0:flowerbed[i-1];
+			int next=i==flowerbed.length-1?0:flowerbed[i+1];
+			if(pre==0&&next==0){
+				count++;
+				flowerbed[i]=1;
+			}
+		}
+        return count>=n;
+	}
+
+	public static boolean checkPossibility(int[] nums){
+		int count=0;
+		for(int i=1;i<nums.length;i++ ){
+			if(nums[i]<nums[i-1]){
+				count++;
+				if(i>=2&&nums[i]<nums[i-2]){
+					nums[i]=nums[i-1];
+				}else{
+					nums[i-1]=nums[i];
+				}
+			}
+		}
+		return count<=1;
+	}
+
+	public static boolean isSubsequence(String s, String t) {
+		for(int i=0,p=0;i<s.length();i++,p++){
+			p=t.indexOf(s.charAt(i),p);
+			if(p==-1){
+				return false;
+			}
+		}
+		return true;
+	}
 }

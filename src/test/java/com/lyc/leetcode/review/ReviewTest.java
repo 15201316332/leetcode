@@ -81,4 +81,43 @@ public class ReviewTest {
 		Assert.assertEquals(1, Review0402.findMinArrowShots(ps2));
 		Assert.assertEquals(3, Review0402.findMinArrowShots(ps3));
 	}
+
+	@Test
+	public void testMaxProfit() {
+		int[] p1 = {1, 2, 3};
+		int[] p2 = {4, 2, 5, 7};
+		int[] p3 = {3, 2, 1};
+		int[] p4 = {4, 2, 5, 7, 5, 4, 9};
+
+		Assert.assertEquals(2, Review0402.maxProfit(p1));
+		Assert.assertEquals(5, Review0402.maxProfit(p2));
+		Assert.assertEquals(0, Review0402.maxProfit(p3));
+		Assert.assertEquals(10, Review0402.maxProfit(p4));
+	}
+
+	@Test
+	public void testCanPlaceFlowers() {
+		int[] p1 = {1};
+		int[] p2 = {0, 0};
+		int[] p3 = {0, 1, 0, 0};
+		int[] p4 = {0, 0, 0, 0, 0};
+
+		Assert.assertEquals(false, Review0402.canPlaceFlowers(p1, 1));
+		Assert.assertEquals(true, Review0402.canPlaceFlowers(p2, 1));
+		Assert.assertEquals(true, Review0402.canPlaceFlowers(p3, 1));
+		Assert.assertEquals(true, Review0402.canPlaceFlowers(p4, 3));
+	}
+
+	@Test
+	public void testCheckPossibility() {
+		int[] nums1 = {1, 2, 3, 4};
+		int[] nums2 = {4, 3, 2, 1};
+		int[] nums3 = {1, 3, 2};
+		int[] nums4 = {4, 5, 6, 4};
+
+		Assert.assertEquals(true, Review0402.checkPossibility(nums1));
+		Assert.assertEquals(false, Review0402.checkPossibility(nums2));
+		Assert.assertEquals(true, Review0402.checkPossibility(nums3));
+		Assert.assertEquals(true, Review0402.checkPossibility(nums4));
+	}
 }
