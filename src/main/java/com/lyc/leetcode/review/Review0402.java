@@ -1,6 +1,8 @@
 package com.lyc.leetcode.review;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author liaoyichen
@@ -42,7 +44,6 @@ public class Review0402 {
 		return r;
 	}
 
-
 	/**
 	 * @author liaoyichen
 	 * @date 2019/4/2
@@ -78,7 +79,6 @@ public class Review0402 {
 		}
 		return r;
 	}
-
 
 	/**
 	 * @author liaoyichen
@@ -134,54 +134,92 @@ public class Review0402 {
 
 	}
 
-	public static int maxProfit(int[] prices){
-		int sum=0;
-		for(int i=1;i<prices.length;i++){
-			 if(prices[i]>prices[i-1]){
-				 sum+=prices[i]-prices[i-1];
-			 }
+	public static int maxProfit(int[] prices) {
+		int sum = 0;
+		for (int i = 1; i < prices.length; i++) {
+			if (prices[i] > prices[i - 1]) {
+				sum += prices[i] - prices[i - 1];
+			}
 		}
 		return sum;
 	}
 
 	public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        int count=0;
-        for(int i=0;i<flowerbed.length;i++){
-        	if(flowerbed[i]==1){
-        		continue;
+		int count = 0;
+		for (int i = 0; i < flowerbed.length; i++) {
+			if (flowerbed[i] == 1) {
+				continue;
 			}
-			int pre=i==0?0:flowerbed[i-1];
-			int next=i==flowerbed.length-1?0:flowerbed[i+1];
-			if(pre==0&&next==0){
+			int pre = i == 0 ? 0 : flowerbed[i - 1];
+			int next = i == flowerbed.length - 1 ? 0 : flowerbed[i + 1];
+			if (pre == 0 && next == 0) {
 				count++;
-				flowerbed[i]=1;
+				flowerbed[i] = 1;
 			}
 		}
-        return count>=n;
+		return count >= n;
 	}
 
-	public static boolean checkPossibility(int[] nums){
-		int count=0;
-		for(int i=1;i<nums.length;i++ ){
-			if(nums[i]<nums[i-1]){
+	public static boolean checkPossibility(int[] nums) {
+		int count = 0;
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[i] < nums[i - 1]) {
 				count++;
-				if(i>=2&&nums[i]<nums[i-2]){
-					nums[i]=nums[i-1];
-				}else{
-					nums[i-1]=nums[i];
+				if (i >= 2 && nums[i] < nums[i - 2]) {
+					nums[i] = nums[i - 1];
+				} else {
+					nums[i - 1] = nums[i];
 				}
 			}
 		}
-		return count<=1;
+		return count <= 1;
 	}
 
 	public static boolean isSubsequence(String s, String t) {
-		for(int i=0,p=0;i<s.length();i++,p++){
-			p=t.indexOf(s.charAt(i),p);
-			if(p==-1){
+		for (int i = 0, p = 0; i < s.length(); i++, p++) {
+			p = t.indexOf(s.charAt(i), p);
+			if (p == -1) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	public static List<Integer> partitionLabels(String s) {
+		List<Integer> r = new ArrayList<>();
+		int[] lastIdx = new int[26];
+		for (int i = 0; i < s.length(); i++) {
+			lastIdx[s.charAt(i) - 'a'] = i;
+		}
+		int start = 0;
+		while (start < s.length()) {
+			int end = start;
+			for (int i = start; i < s.length() && i <= end; i++) {
+				int last = lastIdx[s.charAt(i) - 'a'];
+				if (last > end) {
+					end = last;
+				}
+			}
+			r.add(end - start + 1);
+			start = end + 1;
+		}
+		return r;
+	}
+
+	public static int[][] reconstructQueue(int[][] people) {
+		Arrays.sort(people, (a, b) -> {
+			if (a[0] == b[0]) {
+				return a[1] - b[1];
+			} else {
+				return b[0] - a[0];
+			}
+		});
+		List<int[]> list = new ArrayList<>();
+		for (int i = 0; i < people.length; i++) {
+			list.add(people[i][1], new int[]{people[i][0], people[i][1]});
+		}
+		int[][] r = new int[people.length][2];
+		list.toArray(r);
+		return r;
 	}
 }

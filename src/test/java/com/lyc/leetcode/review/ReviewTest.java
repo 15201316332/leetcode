@@ -1,5 +1,6 @@
 package com.lyc.leetcode.review;
 
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -119,5 +120,39 @@ public class ReviewTest {
 		Assert.assertEquals(false, Review0402.checkPossibility(nums2));
 		Assert.assertEquals(true, Review0402.checkPossibility(nums3));
 		Assert.assertEquals(true, Review0402.checkPossibility(nums4));
+	}
+
+	@Test
+	public void testIsSubsequence() {
+		String s1 = "abc";
+		String t1 = "savbnc";
+
+		String s2 = "cf";
+		String t2 = "cfgh";
+
+		String s3 = "cc";
+		String t3 = "vdsccc";
+
+		String s4 = "sfb";
+		String t4 = "sfffxxz";
+
+		Assert.assertEquals(true, Review0402.isSubsequence(s1, t1));
+		Assert.assertEquals(true, Review0402.isSubsequence(s2, t2));
+		Assert.assertEquals(true, Review0402.isSubsequence(s3, t3));
+		Assert.assertEquals(false, Review0402.isSubsequence(s4, t4));
+	}
+
+	@Test
+	public void testPartitionLabels() {
+		System.out.println(Review0402.partitionLabels("ababcbacadefegdehijhklij"));
+	}
+
+	@Test
+	public void testReconstructQueue() {
+		int[][] people = {{7, 0}, {4, 4}, {7, 1}, {5, 0}, {6, 1}, {5, 2}};
+		int[][] sort = Review0402.reconstructQueue(people);
+		for (int[] s : sort) {
+			System.out.println(Arrays.toString(s));
+		}
 	}
 }
