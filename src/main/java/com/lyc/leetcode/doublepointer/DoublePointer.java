@@ -159,4 +159,11 @@ public class DoublePointer {
 		}
 	}
 
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/3
+	 * @description
+	 */
+
+
 }
