@@ -1,7 +1,9 @@
 package com.lyc.leetcode.doublepointer;
 
+import com.lyc.leetcode.List.ListNode;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -164,6 +166,46 @@ public class DoublePointer {
 	 * @date 2019/4/3
 	 * @description
 	 */
+	public static boolean hasCycle(ListNode head) {
+		if (head == null) {
+			return false;
+		}
+		ListNode l1 = head;
+		ListNode l2 = head.next;
+		while (l1 != null && l2 != null) {
+			if (l1 == l2) {
+				return true;
+			}
+			l1 = l1.next;
+			if (l2.next == null) {
+				break;
+			} else {
+				l2 = l2.next.next;
+			}
+		}
+		return false;
+	}
 
-
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/9
+	 * @description 输入一个字符串和一个字符串数组，字符串可以删除一些字符以匹配字符数组里的元素，找出最大长度的字符串，多个则取字典序最小的，无则返回空字符；
+	 */
+	public static String findLongestWord(String s, List<String> d) {
+		String ret = "";
+		for (String str : d) {
+			for (int i = 0, j = 0; i < s.length() && j < str.length(); i++) {
+				if (s.charAt(i) == str.charAt(j)) {
+					j++;
+				}
+				if (j == str.length()) {
+					if (str.length() > ret.length()
+						|| str.length() == ret.length() && ret.compareTo(str) > 0) {
+						ret = str;
+					}
+				}
+			}
+		}
+		return ret;
+	}
 }
