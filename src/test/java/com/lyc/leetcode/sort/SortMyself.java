@@ -52,7 +52,30 @@ public class SortMyself {
 	private static void mergeSort(int[] a,int low,int high){
 		if(low<high){
 			int mid=(high+low)/2;
-
+			mergeSort(a,low,mid);
+			mergeSort(a,mid+1,high);
+			merge(a,low,mid,high);
+		}
+	}
+	private static void merge(int[] a,int low,int mid,int high){
+		int[] tmp=new int[high-low+1];
+		int i=low,j=mid+1;
+		int k=0;
+		while(i<=mid&&j<=high){
+			if(a[i]>a[j]){
+				tmp[k++]=a[j++];
+			}else{
+				tmp[k++]=a[i++];
+			}
+			while(i<=mid){
+				tmp[k++]=a[i++];
+			}
+			while(j<=high){
+				tmp[k++]=a[j++];
+			}
+		}
+		for(int x=0;x<tmp.length;x++){
+			a[low+x]=tmp[x];
 		}
 	}
 
