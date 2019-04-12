@@ -13,24 +13,12 @@ public class Sort {
 	 * @date 2019/4/10
 	 * @description 冒泡排序 o(n*n) o(1) 稳定
 	 */
-	public static void BubbleSortRight(int[] a) {
+	public static void BubbleSort(int[] a) {
 		for (int i = 0; i < a.length - 1; i++) {
 			for (int j = 0; j < a.length - 1 - i; j++) {
 				if (a[j] > a[j + 1]) {
 					int temp = a[j + 1];
 					a[j + 1] = a[j];
-					a[j] = temp;
-				}
-			}
-		}
-	}
-
-	public static void BubbleSortLeft(int[] a) {
-		for (int i = 0; i < a.length - 1; i++) {
-			for (int j = a.length - 1; j > i; j--) {
-				if (a[j] < a[j - 1]) {
-					int temp = a[j - 1];
-					a[j - 1] = a[j];
 					a[j] = temp;
 				}
 			}
@@ -97,39 +85,92 @@ public class Sort {
 	 * @date 2019/4/11
 	 * @description 归并排序
 	 */
-	public static void mergeSort(int[] a){
-		mergeSort(a,0,a.length-1);
+	public static void mergeSort(int[] a) {
+		mergeSort(a, 0, a.length - 1);
 	}
 
-	private static void mergeSort(int[] a,int low,int high){
-		int mid = (low+high)/2;
-		if(low<high){
-			mergeSort(a,low,mid);
-			mergeSort(a,mid+1,high);
-			merge(a,low,mid,high);
+	public static void mergeSort(int[] a, int low, int high) {
+		if (low < high) {
+			int mid = (high + low) / 2;
+			mergeSort(a, low, mid);
+			mergeSort(a, mid + 1, high);
+			merge(a, low, mid, high);
 		}
 	}
 
-	private static void merge(int[] a,int low,int mid,int high){
-		int[] temp = new int[high-low+1];
-		int i= low;
-		int j = mid+1;
-		int k=0;
-		while(i<=mid && j<=high){
-			if(a[i]<a[j]){
-				temp[k++] = a[i++];
-			}else{
-				temp[k++] = a[j++];
+	private static void merge(int[] a, int low, int mid, int high) {
+		int[] tmp = new int[high - low + 1];
+		int k = 0, i = low, j = mid + 1;
+		while (i <= mid && j <= high) {
+			if (a[j] < a[i]) {
+				tmp[k++] = a[j++];
+			} else {
+				tmp[k++] = a[i++];
 			}
 		}
-		while(i<=mid){
-			temp[k++] = a[i++];
+		while (i <= mid) {
+			tmp[k++] = a[i++];
 		}
-		while(j<=high){
-			temp[k++] = a[j++];
+		while (j <= high) {
+			tmp[k++] = a[j++];
 		}
-		for(int x=0;x<temp.length;x++){
-			a[x+low] = temp[x];
+		for (int x = 0; x < tmp.length; x++) {
+			a[x + low] = tmp[x];
 		}
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/12
+	 * @description 快速排序
+	 */
+	public static void quickSort(int[] a) {
+		quickSort(a, 0, a.length - 1);
+	}
+
+	private static void quickSort(int[] a, int low, int high) {
+		if (low < high) {
+			int mid = getMid(a, low, high);
+			quickSort(a, low, mid);
+			quickSort(a, mid + 1, high);
+		}
+	}
+
+	private static int getMid(int[] a, int low, int high) {
+		int tmp = a[low];
+		while (low < high) {
+			while (low < high && a[high] >= tmp) {
+				high--;
+			}
+			a[low] = a[high];
+			while (low < high && a[low] <= tmp) {
+				low++;
+			}
+			a[high] = a[low];
+		}
+		a[low] = tmp;
+		return low;
+	}
+
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/12
+	 * @description 运用获取第k大数据
+	 */
+
+	public static int getK(int[] a, int k) {
+		int low = 0, high = a.length - 1;
+		while (low < high) {
+			int j = getMid(a, low, high);
+			if (j > k) {
+				high = j - 1;
+			} else if (j < k) {
+				low = j + 1;
+			} else {
+				break;
+			}
+		}
+		return a[k];
 	}
 }
