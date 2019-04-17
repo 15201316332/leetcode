@@ -12,18 +12,20 @@ public class Math {
 	 * @date 2019/4/12
 	 * @description 计算一个数前面的素数个数
 	 */
-	public static int getPrimesCount(int n){
+	public static int getPrimesCount(int n) {
 		boolean[] notPrimes = new boolean[n + 1];
-		int count=0;
-		for(int i=0;i<notPrimes.length;i++){
-			if(notPrimes[i]){
+		int cnt = 0;
+		for (int i = 2; i < n; i++) {
+			if (notPrimes[i]) {
 				continue;
 			}
-			count++;
-			for(int j=i*i;j<n;j+=i){
-				notPrimes[j]=true;
+			cnt++;
+			for (long j = (long) i * i; j < n; j += i) {
+				notPrimes[(int) j] = true;
 			}
 		}
-		return count;
+		return cnt;
 	}
+
+	private Math() {}
 }
