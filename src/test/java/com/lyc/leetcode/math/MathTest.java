@@ -18,4 +18,10 @@ public class MathTest {
 		Assert.assertEquals(2,Math.getPrimesCount(4));
 	}
 
+	@Test
+	public void  testTrailingZeroes(){
+
+		Assert.assertEquals(1,Math.trailingZeroes(5));
+		Assert.assertEquals(2,Math.trailingZeroes(10));
+	}
 }

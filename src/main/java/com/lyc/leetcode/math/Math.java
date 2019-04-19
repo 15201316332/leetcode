@@ -1,5 +1,7 @@
 package com.lyc.leetcode.math;
 
+import java.util.Arrays;
+
 /**
  * @author liaoyichen
  * @date 2019/4/12
@@ -86,10 +88,123 @@ public class Math {
 	/**
 	 * @author liaoyichen
 	 * @date 2019/4/17
-	 * @description 阶乘
+	 * @description 阶乘包含0的个数；思想2*5=10 包含5的少
 	 */
-	public static  int trailingZeroes(int n) {
-     int count=0;
-     return count;
+	public static int trailingZeroes(int n) {
+		return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
 	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description 阶乘二进制标识中第一个1的位置（0的个数）
+	 */
+	public static int trailingOnes(int n) {
+		return n == 0 ? 0 : n >> 1 + trailingZeroes(n >> 1);
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description 字符串二进制相加
+	 */
+	public static String addBinary(String a, String b) {
+		String r = "";
+		int i = a.length() - 1, j = b.length() - 1, c = 0;
+		while (i > -1 || j > -1) {
+			if (i > -1 && a.charAt(i) == '1') {
+				c++;
+			}
+			if (j > -1 && b.charAt(j) == '1') {
+				c++;
+			}
+			r = (c & 0b0001) + r;
+			c = c >>> 1;
+			i--;
+			j--;
+		}
+		if (c == 1) {
+			r = "1" + r;
+		}
+		return r;
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description 最小的移动次数使数组成员全相等
+	 */
+	public static int minMoves2(int[] nums) {
+		Arrays.sort(nums);
+		int ret = 0;
+		int l = 0, r = nums.length - 1;
+		while (l <= r) {
+			ret += nums[r] - nums[l];
+			l++;
+			r--;
+		}
+		return ret;
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description 查找过半元素：排序后中值元素必定是
+	 * 摩尔投票法
+	 */
+	public static int majorityElement(int[] nums) {
+		/*
+		Arrays.sort(nums);
+		return nums[nums.length/2];
+		*/
+		int m=0,c=0;
+		for (int i=0;i<nums.length;i++){
+			if(c==0){
+				m=nums[i];
+				c++;
+			}else if(m==nums[i]){
+				c++;
+			}else{
+				c--;
+			}
+		}
+		return m;
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description
+	 */
+	public static boolean isPerfectSquare(int num) {
+		/*long n=num;
+		long l=0,r=n;
+		while(l<=r){
+			long mid=l+(r-l)/2;
+			if(mid*mid==num){
+				return true;
+			}else if(mid*mid>num){
+				r=mid-1;
+			}else{
+				l=mid+1;
+			}
+		}
+		return false;*/
+		int s=1;
+		while(num>0){
+			num-=s;
+			s+=2;
+		}
+		return num==0;
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/19
+	 * @description 3 的 n 次方
+	 */
+	public static boolean isPowerOfThree(int n) {
+		return n>0&&(1162261467%n==0);
+	}
+
 }
