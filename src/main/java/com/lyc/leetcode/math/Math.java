@@ -149,22 +149,21 @@ public class Math {
 	/**
 	 * @author liaoyichen
 	 * @date 2019/4/19
-	 * @description 查找过半元素：排序后中值元素必定是
-	 * 摩尔投票法
+	 * @description 查找过半元素：排序后中值元素必定是 摩尔投票法
 	 */
 	public static int majorityElement(int[] nums) {
 		/*
 		Arrays.sort(nums);
 		return nums[nums.length/2];
 		*/
-		int m=0,c=0;
-		for (int i=0;i<nums.length;i++){
-			if(c==0){
-				m=nums[i];
+		int m = 0, c = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (c == 0) {
+				m = nums[i];
 				c++;
-			}else if(m==nums[i]){
+			} else if (m == nums[i]) {
 				c++;
-			}else{
+			} else {
 				c--;
 			}
 		}
@@ -190,12 +189,12 @@ public class Math {
 			}
 		}
 		return false;*/
-		int s=1;
-		while(num>0){
-			num-=s;
-			s+=2;
+		int s = 1;
+		while (num > 0) {
+			num -= s;
+			s += 2;
 		}
-		return num==0;
+		return num == 0;
 	}
 
 	/**
@@ -204,7 +203,58 @@ public class Math {
 	 * @description 3 的 n 次方
 	 */
 	public static boolean isPowerOfThree(int n) {
-		return n>0&&(1162261467%n==0);
+		return n > 0 && (1162261467 % n == 0);
 	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/22
+	 * @description 原理：最大的三个数相乘或者一个最大，两个最小（负数）
+	 */
+	public static int maximumProduct(int[] nums) {
+		int max1 = Integer.MIN_VALUE, max2 = Integer.MIN_VALUE, max3 = Integer.MIN_VALUE,
+			min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
+		for (int n : nums) {
+			if (n > max1) {
+				max3 = max2;
+				max2 = max1;
+				max1 = n;
+			} else if (n > max2) {
+				max3 = max2;
+				max2 = n;
+			} else if (n > max3) {
+				max3 = n;
+			}
+			if (n < min1) {
+				min2 = min1;
+				min1 = n;
+			} else if (n < min2) {
+				min2 = n;
+			}
+		}
+		return max1 * max2 * max3 > max1 * min1 * min2 ? max1 * max2 * max3 : max1 * min1 * min2;
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/4/22
+	 * @description 给定一个数组产生一个新数组元素为除自己之外的所有元素的乘积，不能用除法,复杂度为o(n)
+	 * 原理：分段
+	 */
+	public static int[] productExceptSelf(int[] nums) {
+		int n=nums.length;
+		int[] ret=new int[n];
+		ret[0]=1;
+		for(int i=1;i<n;i++){
+			ret[i]=ret[i-1]*nums[i-1];
+		}
+		int right=1;
+		for(int i=n-1;i>=0;i--){
+			ret[i]*=right;
+			right*=nums[i];
+		}
+		return ret;
+	}
+
 
 }
