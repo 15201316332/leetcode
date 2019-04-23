@@ -35,7 +35,7 @@ public class Sort {
 	public static void selectionSort(int[] a) {
 		for (int i = 0; i < a.length - 1; i++) {
 			int minIdx = i;
-			for (int j = i + 1; j < a.length; i++) {
+			for (int j = i + 1; j < a.length; j++) {
 				if (a[j] < a[minIdx]) {
 					minIdx = j;
 				}
@@ -73,7 +73,7 @@ public class Sort {
 			for (int i = gap; i < a.length; i += gap) {
 				int j = i;
 				int tmp = a[j];
-				while (j > 0 && a[j - gap] > tmp) {
+				while (j >=gap && a[j - gap] > tmp) {
 					a[j] = a[j - gap];
 					j -= gap;
 				}
@@ -134,7 +134,7 @@ public class Sort {
 		if (low < high) {
 			int mid = getMid(a, low, high);
 			quickSort(a, low, mid);
-			quickSort(a, mid + 1, high);
+			quickSort(a, mid+1, high);
 		}
 	}
 
@@ -152,6 +152,21 @@ public class Sort {
 		}
 		a[low] = tmp;
 		return low;
+
+		/*int tmp=a[high];
+		while(low<high){
+			while(low<high&&a[low]<=tmp){
+				low++;
+			}
+			a[high]=a[low];
+			while(low<high&&a[high]>=tmp){
+				high--;
+			}
+			a[low]=a[high];
+
+		}
+		a[high]=tmp;
+		return high;*/
 	}
 
 

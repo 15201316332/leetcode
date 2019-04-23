@@ -12,7 +12,7 @@ public class SortTest {
 
 	@Test
 	public void testSort() {
-		int[] d = {3, 2, 4, 1, 5, 6, 8, 9, 9};
+		int[] d = {1, 1, 4, 5, 5, 6, 8, 9, 9};
 		Sort.quickSort(d);
 		System.out.println(Arrays.toString(d));
 	}
