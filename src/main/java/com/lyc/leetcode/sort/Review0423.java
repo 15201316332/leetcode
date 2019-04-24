@@ -39,7 +39,7 @@ public class Review0423 {
 		}
 	}
 
-	//插入算法
+	//插入算法 n*n
 	public static void insertSort(int[] a) {
 		int n=a.length;
 		for(int i=1;i<n;i++){
@@ -53,7 +53,7 @@ public class Review0423 {
 		}
 	}
 
-	//希尔排序 分组的插入排序：逐渐缩小步距为1
+	//希尔排序 分组的插入排序：逐渐缩小步距为1  不稳定nlogn
 	public static void shellSort(int[] a){
 		for(int gap=a.length/2;gap>0;gap/=2){
 			for(int i=gap;i<a.length;i+=gap){
@@ -68,7 +68,7 @@ public class Review0423 {
 		}
 	}
 
-	//归并排序，对两个有序序列可以归并为一个有序序列
+	//归并排序，对两个有序序列可以归并为一个有序序列  稳定nlogn
 	private  static void merge(int[] a,int l,int mid,int r){
 		int[] tmp=new int[r-l+1];
 		int i=l,j=mid+1,k=0;
