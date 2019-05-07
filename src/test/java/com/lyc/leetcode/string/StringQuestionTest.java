@@ -51,4 +51,21 @@ public class StringQuestionTest {
 		Assert.assertEquals(true, StringQuestion.isPalindrome(i2));
 	}
 
+	@Test
+	public void testExtendSubstrings() {
+		String s = "abc";
+		int cnt = 3;
+		String s1 = "aaa";
+		int cnt1 = 6;
+		StringQuestion stringQuestion=new StringQuestion();
+		Assert.assertEquals(cnt, stringQuestion.countSubstrings(s));
+		Assert.assertEquals(cnt1, stringQuestion.countSubstrings(s1));
+	}
+
+	@Test
+	public void testCountBinarySubstrings(){
+		String s = "00110011";
+		int cnt = 6;
+		Assert.assertEquals(cnt, StringQuestion.countBinarySubstrings(s));
+	}
 }

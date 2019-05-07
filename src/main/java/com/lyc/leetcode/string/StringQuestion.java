@@ -1,8 +1,7 @@
 package com.lyc.leetcode.string;
 
 /**
- *     英文字母不分大小写有26个 ASCII码总共有256个，128个标准，128个扩展
- * *
+ * 英文字母不分大小写有26个 ASCII码总共有256个，128个标准，128个扩展 *
  */
 
 
@@ -98,6 +97,56 @@ public class StringQuestion {
 		}
 		return x == right || x == right / 10;
 	}
+
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/7
+	 * @description 计算一个字符串的所有回文子串的数量 从每个字符开始计算，奇数型（以自己为中心）,偶数型自己和后一个
+	 */
+	Integer count = 0;
+
+	public int countSubstrings(String s) {
+		for (int i = 0; i < s.length(); i++) {
+			// 奇数长度
+			extendSubstrings(s, i, i);
+			// 偶数长度
+			extendSubstrings(s, i, i + 1);
+		}
+		return count;
+	}
+
+	private void extendSubstrings(String s, int start, int end) {
+		while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+			start--;
+			end++;
+			count++;
+		}
+
+	}
+
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/7
+	 * @description 找出字符串中连续0和1数量相同的子串个数，限定：字符串只包含0,1
+	 */
+	public static int countBinarySubstrings(String s) {
+		int pre = 0, curr = 1, ret = 0;
+		for (int i = 1; i < s.length(); i++) {
+			if (s.charAt(i) == s.charAt(i - 1)) {
+				curr++;
+			} else {
+				pre = curr;
+				curr = 1;
+			}
+			if (pre >= curr) {
+				ret++;
+			}
+		}
+		return ret;
+	}
+
 
 }
 
