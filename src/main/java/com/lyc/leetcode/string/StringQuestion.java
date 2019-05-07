@@ -129,7 +129,7 @@ public class StringQuestion {
 	/**
 	 * @author liaoyichen
 	 * @date 2019/5/7
-	 * @description 找出字符串中连续0和1数量相同的子串个数，限定：字符串只包含0,1
+	 * @description 找出字符串中连续0和1数量相同的子串个数，限定：字符串只包含0,1 原理：计数分为当前和前面的两个，遍历字符串每个字符，如果与前一个相同则当前+1,如果不同则前记为当前，当前+1,如果前面的大于等于当前则结果计数+1
 	 */
 	public static int countBinarySubstrings(String s) {
 		int pre = 0, curr = 1, ret = 0;
@@ -147,6 +147,42 @@ public class StringQuestion {
 		return ret;
 	}
 
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/7
+	 * @description 判断s2能否用s1循环移位得到:s1s1即可得到所有的组合形式，判断是否包含即可
+	 */
+	public static boolean isShiftBe(String s1, String s2) {
+		String s3 = s1 + s1;
+		return s3.contains(s2);
+	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/7
+	 * @description 字符串向右循环移动k位
+	 */
+	public static String rightShiftK(String s, int k) {
+		int k1 = k % s.length();
+		/*String left = s.substring(0, s.length() - k);
+		String right = s.substring(s.length() - k, s.length());
+		return reverse(reverse(left) + reverse(right));*/
+		char[] cs=s.toCharArray();
+		char[] cs2=new char[s.length()];
+		for(int i=0;i<s.length();i++){
+			cs2[i]=cs[(i+k1)%s.length()];
+		}
+		return new String(cs2);
+	}
+
+	private static String reverse(String s) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < s.length(); i++) {
+			sb.append(s.charAt(s.length() - 1 - i));
+		}
+		return sb.toString();
+	}
 
 }
 

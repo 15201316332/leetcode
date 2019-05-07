@@ -68,4 +68,21 @@ public class StringQuestionTest {
 		int cnt = 6;
 		Assert.assertEquals(cnt, StringQuestion.countBinarySubstrings(s));
 	}
+
+	@Test
+	public void testIsShiftBe(){
+		String s1 = "ADCD";
+		String s2 = "DADC";
+		Assert.assertEquals(true, StringQuestion.isShiftBe(s1,s2));
+	}
+
+	@Test
+	public void rightShiftK(){
+		String s1 = "123abc";
+		int k=3;
+		String s2 = "abc123";
+		Assert.assertEquals(s2, StringQuestion.rightShiftK(s1,k));
+	}
+
+
 }
