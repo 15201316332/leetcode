@@ -57,32 +57,38 @@ public class StringQuestionTest {
 		int cnt = 3;
 		String s1 = "aaa";
 		int cnt1 = 6;
-		StringQuestion stringQuestion=new StringQuestion();
+		StringQuestion stringQuestion = new StringQuestion();
 		Assert.assertEquals(cnt, stringQuestion.countSubstrings(s));
 		Assert.assertEquals(cnt1, stringQuestion.countSubstrings(s1));
 	}
 
 	@Test
-	public void testCountBinarySubstrings(){
+	public void testCountBinarySubstrings() {
 		String s = "00110011";
 		int cnt = 6;
 		Assert.assertEquals(cnt, StringQuestion.countBinarySubstrings(s));
 	}
 
 	@Test
-	public void testIsShiftBe(){
+	public void testIsShiftBe() {
 		String s1 = "ADCD";
 		String s2 = "DADC";
-		Assert.assertEquals(true, StringQuestion.isShiftBe(s1,s2));
+		Assert.assertEquals(true, StringQuestion.isShiftBe(s1, s2));
 	}
 
 	@Test
-	public void rightShiftK(){
+	public void rightShiftK() {
 		String s1 = "123abc";
-		int k=3;
+		int k = 3;
 		String s2 = "abc123";
-		Assert.assertEquals(s2, StringQuestion.rightShiftK(s1,k));
+		Assert.assertEquals(s2, StringQuestion.rightShiftK(s1, k));
 	}
 
+	@Test
+	public void reverseWord() {
+		String s1 = "123 abc";
+		String s2 = "abc 123";
+		Assert.assertEquals(s2, StringQuestion.reverseWord(s1));
+	}
 
 }

@@ -165,13 +165,17 @@ public class StringQuestion {
 	 */
 	public static String rightShiftK(String s, int k) {
 		int k1 = k % s.length();
-		/*String left = s.substring(0, s.length() - k);
+		String left = s.substring(0, s.length() - k);
 		String right = s.substring(s.length() - k, s.length());
-		return reverse(reverse(left) + reverse(right));*/
-		char[] cs=s.toCharArray();
-		char[] cs2=new char[s.length()];
-		for(int i=0;i<s.length();i++){
-			cs2[i]=cs[(i+k1)%s.length()];
+		return reverse(reverse(left) + reverse(right));
+	}
+
+	public static String rightShiftK2(String s, int k) {
+		int k1 = k % s.length();
+		char[] cs = s.toCharArray();
+		char[] cs2 = new char[s.length()];
+		for (int i = 0; i < s.length(); i++) {
+			cs2[i] = cs[(i + k1) % s.length()];
 		}
 		return new String(cs2);
 	}
@@ -183,6 +187,24 @@ public class StringQuestion {
 		}
 		return sb.toString();
 	}
+
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/9
+	 * @description 单词逆序
+	 */
+	public static String reverseWord(String s) {
+		String[] ss = s.split(" ");
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < ss.length; i++) {
+			sb.append(ss[ss.length - 1 - i]);
+			if (i != ss.length - 1) {
+				sb.append(" ");
+			}
+		}
+		return sb.toString();
+	}
+
 
 }
 
