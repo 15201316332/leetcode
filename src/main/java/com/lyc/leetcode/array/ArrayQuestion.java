@@ -50,6 +50,28 @@ public class ArrayQuestion {
 		return null;
 	}
 
-
+	/**
+	 * @author liaoyichen
+	 * @date 2019/5/15
+	 * @description 找出重复的数
+	 */
+	public int findDuplicate(int[] nums) {
+		int l=1,r=nums.length-1;
+		while(l<r){
+			int mid=l+(r-l)/2;
+			int count=0;
+			for(int i=0;i<nums.length;i++){
+				if(nums[i]>mid){
+					count++;
+				}
+			}
+			if(count>mid){
+				l=mid+1;
+			}else{
+				r=mid-1;
+			}
+		}
+		return l;
+	}
 
 }
